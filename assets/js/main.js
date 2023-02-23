@@ -5,15 +5,15 @@ const navMenu = document.getElementById('nav-menu'),
 
 // show menu
 
-    if(navToggle){
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.add('show-menu');
-        })
-    }
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.add('show-menu');
+    })
+}
 
 // menu hidden
 
-if(navClose){
+if (navClose) {
     navClose.addEventListener('click', () => {
         navMenu.classList.remove('show-menu');
     })
@@ -27,4 +27,24 @@ function linkAction() {
     const navMenu = document.getElementById('nav-menu')
     navMenu.classList.remove('show-menu')
 }
-navLink.forEach(n => n. addEventListener('click', linkAction))
+navLink.forEach(n => n.addEventListener('click', linkAction))
+
+// skills
+
+const skillsContent = document.getElementByClassName('skills__content'),
+    skills = document.querySelectorAll('.skills__header')
+
+function toggleSkills() {
+    let itemClass = this.parentNode.className
+
+    for (i = 0; i < skillsContent.length; i++) {
+        skillsContent[i].className = 'skills__content skills__close'
+    }
+    if (itemClass === 'skills__content skills__close') {
+        this.parentNode.className = 'skills__content skills__open'
+    }
+}
+
+skillsHeader.forEach((el) => {
+    el.addEventListener('click', toggleSkills)
+})
