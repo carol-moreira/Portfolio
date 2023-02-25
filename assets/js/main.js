@@ -31,8 +31,8 @@ navLink.forEach(n => n.addEventListener('click', linkAction))
 
 // skills
 
-const skillsContent = document.getElementByClassName('skills__content'),
-    skills = document.querySelectorAll('.skills__header')
+const skillsContent = document.getElementsByClassName('skills__content'),
+    skillsHeader = document.querySelectorAll('.skills__header')
 
 function toggleSkills() {
     let itemClass = this.parentNode.className
@@ -48,3 +48,64 @@ function toggleSkills() {
 skillsHeader.forEach((el) => {
     el.addEventListener('click', toggleSkills)
 })
+
+//qualification
+
+const tabs = document.querySelectorAll('[data-target]'),
+      tabContents = document.querySelectorAll('[data-content]')
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () =>{
+        const target = document.querySelector(tab.dataset.target)
+
+        tabContents.forEach(tabContent => {
+            tabContent.classList.remove('qualification__active')
+        })
+        target.classList.add('qualification__active')
+
+        tab.forEach(tab =>{
+            tab.classList.remove('qualification__active')
+        })
+        tab.classList.add('qualification__active')
+    })
+})
+
+// services modal
+
+const modalViews = document.querySelectorAll('.services__modal'),
+      modalBtns = document.querySelectorAll('.services__button'),
+      modalCloses = document.querySelectorAll('.services__modal-close')
+
+let modal = function(modalClick){
+    modalViews[modalClick].classList.add('active-modal')
+}
+
+modalBtns.forEach((modalBtn, i) => {
+    modalBtn.addEventListener('click', () => {
+        modal(i)
+    })
+})
+
+modalCloses.forEach((modalClose) => {
+    modalClose.addEventListener('click', () => {
+        modalViews.forEach((modalView) => {
+            modalView.classList.remove('active-modal')
+        })
+    })
+})
+
+// portfolio swiper
+
+let swiper = new Swiper('.portfolio__container', {
+    cssMode: true,
+    loop: true,
+
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+});
